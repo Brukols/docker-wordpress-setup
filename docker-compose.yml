@@ -1,0 +1,38 @@
+version: '3.1'
+
+services:
+
+  wordpress-example:
+    build: ./wordpress
+    restart: always
+    ports:
+      - 10000:80
+    environment:
+      WORDPRESS_DB_HOST: db-example
+      WORDPRESS_DB_USER: example
+      WORDPRESS_DB_PASSWORD: example
+      WORDPRESS_DB_NAME: example
+    volumes:
+      - ./wp-content/plugins/:/var/www/html/wp-content/plugins
+      - ./wp-content/themes/:/var/www/html/wp-content/themes
+
+  db-example:
+    build: ./db
+    restart: always
+    environment:
+      MYSQL_DATABASE: db-example
+      MYSQL_USER: example
+      MYSQL_PASSWORD: example
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: db-example
+    ports:
+      - 10001:80
+
+volumes:
+  wordpress:
+  db:
