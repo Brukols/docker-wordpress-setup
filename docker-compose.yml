@@ -2,36 +2,38 @@ version: '3.1'
 
 services:
 
-  wordpress-example:
+  wordpress-exemple:
     build: ./wordpress
     restart: always
     ports:
-      - 10000:80
+      - 8083:80
     environment:
-      WORDPRESS_DB_HOST: db-example
-      WORDPRESS_DB_USER: example
-      WORDPRESS_DB_PASSWORD: example
-      WORDPRESS_DB_NAME: example
+      WORDPRESS_DB_HOST: db-exemple
+      WORDPRESS_DB_USER: exemple
+      WORDPRESS_DB_PASSWORD: exemple
+      WORDPRESS_DB_NAME: exemple
     volumes:
       - ./wp-content/plugins/:/var/www/html/wp-content/plugins
       - ./wp-content/themes/:/var/www/html/wp-content/themes
+      - ./wp-content/uploads/:/var/www/html/wp-content/uploads
+      - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
 
-  db-example:
+  db-exemple:
     build: ./db
     restart: always
     environment:
-      MYSQL_DATABASE: example
-      MYSQL_USER: example
-      MYSQL_PASSWORD: example
+      MYSQL_DATABASE: exemple
+      MYSQL_USER: exemple
+      MYSQL_PASSWORD: exemple
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     restart: always
     environment:
-      PMA_HOST: db-example
+      PMA_HOST: db-exemple
     ports:
-      - 10001:80
+      - 8084:80
 
 volumes:
   wordpress:

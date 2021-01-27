@@ -49,6 +49,8 @@ wp-content/*
 !wp-content/mu-plugins/
 !wp-content/plugins/
 !wp-content/themes/
+!wp-content/uploads/
+!uploads.ini
 
 # ignore these plugins
 wp-content/plugins/hello.php
